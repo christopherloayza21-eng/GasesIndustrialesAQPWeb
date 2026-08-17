@@ -1,0 +1,17 @@
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+
+# Temporales
+*.tmp
+*.log
+
+# Dependencias futuras si el proyecto migra a Node/React
+node_modules/
+dist/
+build/
