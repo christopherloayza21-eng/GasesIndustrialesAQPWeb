@@ -976,7 +976,7 @@ a {
 }
 
 @media (max-width: 760px) {
-  .top-bar-content {
+  .top-bar {
     display: none;
   }
 
@@ -993,23 +993,29 @@ a {
 
   .brand {
     flex: 1;
+    order: 1;
+    min-width: 0;
   }
 
   .brand-logo {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 
   .brand-text strong {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.1;
   }
 
   .menu-toggle {
     display: inline-flex;
+    order: 2;
+    flex: 0 0 46px;
   }
 
   .nav-menu {
     display: none;
+    order: 3;
     width: 100%;
     flex-direction: column;
     align-items: stretch;
@@ -1034,6 +1040,7 @@ a {
 
   .navbar .btn-whatsapp {
     display: none;
+    order: 4;
     width: 100%;
   }
 
