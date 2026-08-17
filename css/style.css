@@ -133,6 +133,27 @@ a {
   color: var(--color-primary);
 }
 
+.menu-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-white);
+  border-radius: 999px;
+}
+
 /* ==========================================
    3. Botones
    ========================================== */
@@ -902,7 +923,6 @@ a {
    ========================================== */
 @media (max-width: 900px) {
   .top-bar-content,
-  .navbar,
   .footer-content {
     flex-direction: column;
     align-items: flex-start;
@@ -955,6 +975,73 @@ a {
   }
 }
 
+@media (max-width: 760px) {
+  .top-bar-content {
+    display: none;
+  }
+
+  .site-header {
+    position: sticky;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: auto;
+    padding: 12px 0;
+  }
+
+  .brand {
+    flex: 1;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text strong {
+    font-size: 15px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .navbar.nav-open .nav-menu {
+    display: flex;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .navbar .btn-whatsapp {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar.nav-open .btn-whatsapp {
+    display: inline-flex;
+  }
+}
+
 @media (max-width: 560px) {
   .container {
     width: min(100% - 28px, 1120px);
@@ -965,10 +1052,6 @@ a {
   }
 
   .brand-text small {
-    display: none;
-  }
-
-  .nav-menu {
     display: none;
   }
 
