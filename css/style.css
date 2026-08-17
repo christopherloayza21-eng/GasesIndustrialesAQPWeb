@@ -193,6 +193,31 @@ a {
   border-color: var(--color-primary);
 }
 
+.floating-whatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background-color: #25d366;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-2px);
+  background-color: #1ebe5d;
+}
+
 /* ==========================================
    4. Hero
    ========================================== */
@@ -1094,6 +1119,14 @@ a {
 
   .section {
     padding: 64px 0;
+  }
+
+  .floating-whatsapp {
+    right: 14px;
+    bottom: 14px;
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 13px;
   }
 }
 /* AGREGAR AL CSS */
