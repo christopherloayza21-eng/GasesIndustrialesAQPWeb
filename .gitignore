@@ -6,10 +6,25 @@ Desktop.ini
 # Editores
 .vscode/
 .idea/
+.vs/
 
 # Temporales
 *.tmp
 *.log
+
+# .NET / C#
+bin/
+obj/
+*.user
+*.suo
+*.rsuser
+*.csproj.user
+
+# Configuracion local sensible
+appsettings.Local.json
+*.local.json
+.env
+.env.*
 
 # Dependencias futuras si el proyecto migra a Node/React
 node_modules/
