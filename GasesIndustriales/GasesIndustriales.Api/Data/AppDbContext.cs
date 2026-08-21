@@ -12,6 +12,8 @@ namespace GasesIndustriales.Api.Data
 
         public DbSet<Cliente> Clientes { get; set; }
 
+        public DbSet<Producto> Productos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cliente>(entity =>
@@ -43,6 +45,34 @@ namespace GasesIndustriales.Api.Data
 
                 entity.Property(e => e.RequiereGarantia)
                     .HasColumnName("requiere_garantia");
+
+                entity.Property(e => e.Activo)
+                    .HasColumnName("activo");
+            });
+
+            modelBuilder.Entity<Producto>(entity =>
+            {
+                entity.ToTable("producto");
+
+                entity.HasKey(e => e.IdProducto);
+
+                entity.Property(e => e.IdProducto)
+                    .HasColumnName("id_producto");
+
+                entity.Property(e => e.Codigo)
+                    .HasColumnName("codigo");
+
+                entity.Property(e => e.Nombre)
+                    .HasColumnName("nombre");
+
+                entity.Property(e => e.TipoProducto)
+                    .HasColumnName("tipo_producto");
+
+                entity.Property(e => e.UnidadMedida)
+                    .HasColumnName("unidad_medida");
+
+                entity.Property(e => e.PrecioReferencia)
+                    .HasColumnName("precio_referencia");
 
                 entity.Property(e => e.Activo)
                     .HasColumnName("activo");

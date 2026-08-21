@@ -43,3 +43,45 @@ Content-Type: application/json
 
 DELETE {{GasesIndustriales.Api_HostAddress}}/api/clientes/1
 Accept: application/json
+
+###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/productos
+Accept: application/json
+
+###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/productos/1
+Accept: application/json
+
+###
+
+POST {{GasesIndustriales.Api_HostAddress}}/api/productos
+Content-Type: application/json
+
+{
+  "codigo": "OX-MED",
+  "nombre": "Oxígeno medicinal",
+  "tipoProducto": "GAS",
+  "unidadMedida": "M3",
+  "precioReferencia": 16.50
+}
+
+###
+
+PUT {{GasesIndustriales.Api_HostAddress}}/api/productos/1
+Content-Type: application/json
+
+{
+  "codigo": "OX-M3",
+  "nombre": "Oxígeno Industrial",
+  "tipoProducto": "GAS",
+  "unidadMedida": "M3",
+  "precioReferencia": 14.30,
+  "activo": true
+}
+
+###
+
+DELETE {{GasesIndustriales.Api_HostAddress}}/api/productos/1
+Accept: application/json

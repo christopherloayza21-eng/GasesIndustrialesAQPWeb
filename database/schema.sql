@@ -28,9 +28,13 @@ CREATE TABLE producto (
     id_producto SERIAL PRIMARY KEY,
     codigo VARCHAR(20) NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
+    tipo_producto VARCHAR(20) NOT NULL DEFAULT 'GAS',
     unidad_medida VARCHAR(10) NOT NULL,
     precio_referencia NUMERIC(10,2),
     activo BOOLEAN NOT NULL DEFAULT TRUE,
+
+    CONSTRAINT chk_producto_tipo
+        CHECK (tipo_producto IN ('GAS', 'EQUIPO', 'INSUMO', 'SERVICIO')),
 
     CONSTRAINT chk_producto_precio
         CHECK (precio_referencia IS NULL OR precio_referencia >= 0)

@@ -15,11 +15,13 @@ VALUES
  'Cercado', 3, 'EVENTUAL', TRUE);
 
 INSERT INTO producto
-(codigo, nombre, unidad_medida, precio_referencia)
+(codigo, nombre, tipo_producto, unidad_medida, precio_referencia)
 VALUES
-('OX-M3', 'Oxígeno Industrial', 'M3', 14.30),
-('CO2-KG', 'Dióxido de Carbono', 'KG', 8.50),
-('ACE-KG', 'Acetileno', 'KG', 25.00);
+('OX-M3', 'Oxígeno Industrial', 'GAS', 'M3', 14.30),
+('CO2-KG', 'Dióxido de Carbono', 'GAS', 'KG', 8.50),
+('ACE-KG', 'Acetileno', 'GAS', 'KG', 25.00),
+('EQ-SOLD-001', 'Máquina de soldar inverter', 'EQUIPO', 'UND', 850.00),
+('INS-ELEC-6011', 'Electrodo 6011 3.25 mm', 'INSUMO', 'KG', 12.50);
 
 INSERT INTO cilindro
 (codigo_cilindro, id_producto, capacidad, propietario_tipo,
