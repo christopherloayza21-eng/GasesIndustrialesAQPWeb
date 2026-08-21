@@ -1,6 +1,45 @@
 @GasesIndustriales.Api_HostAddress = http://localhost:5133
 
-GET {{GasesIndustriales.Api_HostAddress}}/weatherforecast/
+GET {{GasesIndustriales.Api_HostAddress}}/api/clientes
 Accept: application/json
 
 ###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/clientes/1
+Accept: application/json
+
+###
+
+POST {{GasesIndustriales.Api_HostAddress}}/api/clientes
+Content-Type: application/json
+
+{
+  "razonSocial": "Nuevo Cliente Demo SAC",
+  "ruc": "20111111111",
+  "telefono": "999888777",
+  "direccion": "Arequipa",
+  "idZona": 1,
+  "tipoCliente": "NUEVO",
+  "requiereGarantia": true
+}
+
+###
+
+PUT {{GasesIndustriales.Api_HostAddress}}/api/clientes/1
+Content-Type: application/json
+
+{
+  "razonSocial": "Cliente Demo Industrial SAC",
+  "ruc": "20123456789",
+  "telefono": "999111222",
+  "direccion": "Av. Industrial 123",
+  "idZona": 1,
+  "tipoCliente": "FRECUENTE",
+  "requiereGarantia": false,
+  "activo": true
+}
+
+###
+
+DELETE {{GasesIndustriales.Api_HostAddress}}/api/clientes/1
+Accept: application/json
