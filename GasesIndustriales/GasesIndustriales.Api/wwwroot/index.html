@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Gases Industriales AQP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Sistema interno</p>
+      <h1>Dashboard de inventario</h1>
+    </div>
+    <button id="refreshButton" type="button">Actualizar</button>
+  </header>
+
+  <main class="page">
+    <section class="summary-grid" aria-label="Resumen operativo">
+      <article class="summary-card">
+        <span>Cilindros disponibles</span>
+        <strong id="cilindrosDisponibles">-</strong>
+      </article>
+      <article class="summary-card">
+        <span>En clientes</span>
+        <strong id="cilindrosEnClientes">-</strong>
+      </article>
+      <article class="summary-card">
+        <span>En proveedor</span>
+        <strong id="cilindrosEnProveedor">-</strong>
+      </article>
+      <article class="summary-card">
+        <span>Pedidos pendientes</span>
+        <strong id="pedidosPendientes">-</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Trazabilidad</p>
+          <h2>Movimientos recientes</h2>
+        </div>
+        <p id="statusText">Cargando datos...</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Cilindro</th>
+              <th>Producto</th>
+              <th>Movimiento</th>
+              <th>Cliente</th>
+              <th>Observación</th>
+            </tr>
+          </thead>
+          <tbody id="movimientosBody">
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
