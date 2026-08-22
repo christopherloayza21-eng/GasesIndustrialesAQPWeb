@@ -18,11 +18,22 @@ namespace GasesIndustriales.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProductos()
+        public async Task<IActionResult> GetProductos([FromQuery] string? tipo, [FromQuery] bool incluirInactivos = false)
         {
-            var productos = await _context.Productos
-                .AsNoTracking()
-                .Where(producto => producto.Activo)
+            var query = _context.Productos.AsNoTracking();
+
+            if (!incluirInactivos)
+            {
+                query = query.Where(producto => producto.Activo);
+            }
+
+            if (!string.IsNullOrWhiteSpace(tipo))
+            {
+                var tipoNormalizado = tipo.Trim().ToUpperInvariant();
+                query = query.Where(producto => producto.TipoProducto == tipoNormalizado);
+            }
+
+            var productos = await query
                 .OrderBy(producto => producto.Nombre)
                 .Select(producto => ToResponseDto(producto))
                 .ToListAsync();
@@ -126,6 +137,23 @@ namespace GasesIndustriales.Api.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPatch("{id:int}/reactivar")]
+        public async Task<IActionResult> ReactivarProducto(int id)
+        {
+            var producto = await _context.Productos.FindAsync(id);
+
+            if (producto is null)
+            {
+                return NotFound();
+            }
+
+            producto.Activo = true;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(ToResponseDto(producto));
         }
 
         private async Task<bool> ExisteCodigoActivo(string codigo, int? idProductoIgnorado = null)

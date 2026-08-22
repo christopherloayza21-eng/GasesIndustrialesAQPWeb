@@ -24,7 +24,15 @@ namespace GasesIndustriales.Api.Data
 
         public DbSet<Pedido> Pedidos { get; set; }
 
+        public DbSet<DetallePedido> DetallesPedido { get; set; }
+
         public DbSet<MovimientoCilindro> MovimientosCilindro { get; set; }
+
+        public DbSet<Proveedor> Proveedores { get; set; }
+
+        public DbSet<EnvioRecarga> EnviosRecarga { get; set; }
+
+        public DbSet<DetalleEnvioRecarga> DetallesEnvioRecarga { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -247,6 +255,106 @@ namespace GasesIndustriales.Api.Data
 
                 entity.Property(e => e.IdVehiculo)
                     .HasColumnName("id_vehiculo");
+
+                entity.Property(e => e.Observacion)
+                    .HasColumnName("observacion");
+            });
+
+            modelBuilder.Entity<DetallePedido>(entity =>
+            {
+                entity.ToTable("detalle_pedido");
+
+                entity.HasKey(e => e.IdDetalle);
+
+                entity.Property(e => e.IdDetalle)
+                    .HasColumnName("id_detalle");
+
+                entity.Property(e => e.IdPedido)
+                    .HasColumnName("id_pedido");
+
+                entity.Property(e => e.IdProducto)
+                    .HasColumnName("id_producto");
+
+                entity.Property(e => e.Cantidad)
+                    .HasColumnName("cantidad");
+
+                entity.Property(e => e.PrecioUnitario)
+                    .HasColumnName("precio_unitario");
+
+                entity.Property(e => e.Subtotal)
+                    .HasColumnName("subtotal");
+            });
+
+            modelBuilder.Entity<Proveedor>(entity =>
+            {
+                entity.ToTable("proveedor");
+
+                entity.HasKey(e => e.IdProveedor);
+
+                entity.Property(e => e.IdProveedor)
+                    .HasColumnName("id_proveedor");
+
+                entity.Property(e => e.RazonSocial)
+                    .HasColumnName("razon_social");
+
+                entity.Property(e => e.Ruc)
+                    .HasColumnName("ruc");
+
+                entity.Property(e => e.Telefono)
+                    .HasColumnName("telefono");
+
+                entity.Property(e => e.Direccion)
+                    .HasColumnName("direccion");
+
+                entity.Property(e => e.Activo)
+                    .HasColumnName("activo");
+            });
+
+            modelBuilder.Entity<EnvioRecarga>(entity =>
+            {
+                entity.ToTable("envio_recarga");
+
+                entity.HasKey(e => e.IdEnvio);
+
+                entity.Property(e => e.IdEnvio)
+                    .HasColumnName("id_envio");
+
+                entity.Property(e => e.IdProveedor)
+                    .HasColumnName("id_proveedor");
+
+                entity.Property(e => e.FechaEnvio)
+                    .HasColumnName("fecha_envio");
+
+                entity.Property(e => e.NumeroGuia)
+                    .HasColumnName("numero_guia");
+
+                entity.Property(e => e.Estado)
+                    .HasColumnName("estado");
+
+                entity.Property(e => e.Observaciones)
+                    .HasColumnName("observaciones");
+            });
+
+            modelBuilder.Entity<DetalleEnvioRecarga>(entity =>
+            {
+                entity.ToTable("detalle_envio_recarga");
+
+                entity.HasKey(e => e.IdDetalleEnvio);
+
+                entity.Property(e => e.IdDetalleEnvio)
+                    .HasColumnName("id_detalle_envio");
+
+                entity.Property(e => e.IdEnvio)
+                    .HasColumnName("id_envio");
+
+                entity.Property(e => e.IdCilindro)
+                    .HasColumnName("id_cilindro");
+
+                entity.Property(e => e.FechaRetorno)
+                    .HasColumnName("fecha_retorno");
+
+                entity.Property(e => e.EstadoRetorno)
+                    .HasColumnName("estado_retorno");
 
                 entity.Property(e => e.Observacion)
                     .HasColumnName("observacion");

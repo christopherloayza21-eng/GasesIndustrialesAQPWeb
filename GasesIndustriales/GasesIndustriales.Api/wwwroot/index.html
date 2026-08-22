@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Gases Industriales AQP</title>
+  <title>Inventario | Gases Industriales AQP</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
     <div>
       <p class="eyebrow">Sistema interno</p>
-      <h1>Dashboard de inventario</h1>
+      <h1>Inventario y operaciones</h1>
     </div>
     <button id="refreshButton" type="button">Actualizar</button>
   </header>
@@ -19,134 +19,48 @@
     <nav class="tabs" aria-label="Módulos del sistema">
       <button class="tab-button active" type="button" data-view="dashboardView">Dashboard</button>
       <button class="tab-button" type="button" data-view="clientesView">Clientes</button>
+      <button class="tab-button" type="button" data-view="productosView">Productos</button>
+      <button class="tab-button" type="button" data-view="cilindrosView">Cilindros</button>
+      <button class="tab-button" type="button" data-view="pedidosView">Pedidos</button>
+      <button class="tab-button" type="button" data-view="movimientosView">Movimientos</button>
+      <button class="tab-button" type="button" data-view="recargasView">Recargas</button>
+      <button class="tab-button" type="button" data-view="maestrosView">Maestros</button>
     </nav>
 
     <section id="dashboardView" class="view active">
       <section class="summary-grid" aria-label="Resumen operativo">
-      <article class="summary-card">
-        <span>Cilindros disponibles</span>
-        <strong id="cilindrosDisponibles">-</strong>
-      </article>
-      <article class="summary-card">
-        <span>En clientes</span>
-        <strong id="cilindrosEnClientes">-</strong>
-      </article>
-      <article class="summary-card">
-        <span>En proveedor</span>
-        <strong id="cilindrosEnProveedor">-</strong>
-      </article>
-      <article class="summary-card">
-        <span>Pedidos pendientes</span>
-        <strong id="pedidosPendientes">-</strong>
-      </article>
+        <article class="summary-card"><span>Cilindros disponibles</span><strong id="cilindrosDisponibles">-</strong></article>
+        <article class="summary-card"><span>En clientes</span><strong id="cilindrosEnClientes">-</strong></article>
+        <article class="summary-card"><span>En proveedor</span><strong id="cilindrosEnProveedor">-</strong></article>
+        <article class="summary-card"><span>Pedidos pendientes</span><strong id="pedidosPendientes">-</strong></article>
       </section>
 
       <section class="panel">
         <div class="panel-header">
-          <div>
-            <p class="eyebrow">Trazabilidad</p>
-            <h2>Movimientos recientes</h2>
-          </div>
+          <div><p class="eyebrow">Trazabilidad</p><h2>Movimientos recientes</h2></div>
           <p id="statusText">Cargando datos...</p>
         </div>
-
         <div class="table-wrapper">
           <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Cilindro</th>
-                <th>Producto</th>
-                <th>Movimiento</th>
-                <th>Cliente</th>
-                <th>Observación</th>
-              </tr>
-            </thead>
-            <tbody id="movimientosBody">
-            </tbody>
+            <thead><tr><th>Fecha</th><th>Cilindro</th><th>Producto</th><th>Movimiento</th><th>Cliente</th><th>Observación</th></tr></thead>
+            <tbody id="movimientosBody"></tbody>
           </table>
         </div>
       </section>
     </section>
 
-    <section id="clientesView" class="view">
-      <section class="panel form-panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Clientes</p>
-            <h2>Registrar cliente</h2>
-          </div>
-          <p id="clientesStatus">Listo</p>
-        </div>
-
-        <form id="clienteForm" class="form-grid">
-          <label>
-            Razón social
-            <input id="clienteRazonSocial" name="razonSocial" type="text" maxlength="150" required>
-          </label>
-          <label>
-            RUC
-            <input id="clienteRuc" name="ruc" type="text" maxlength="11">
-          </label>
-          <label>
-            Teléfono
-            <input id="clienteTelefono" name="telefono" type="text" maxlength="20">
-          </label>
-          <label>
-            Zona
-            <input id="clienteIdZona" name="idZona" type="number" min="1">
-          </label>
-          <label>
-            Tipo
-            <select id="clienteTipo" name="tipoCliente">
-              <option value="EVENTUAL">EVENTUAL</option>
-              <option value="NUEVO">NUEVO</option>
-              <option value="FRECUENTE">FRECUENTE</option>
-            </select>
-          </label>
-          <label class="full-field">
-            Dirección
-            <input id="clienteDireccion" name="direccion" type="text">
-          </label>
-          <label class="check-field">
-            <input id="clienteRequiereGarantia" name="requiereGarantia" type="checkbox" checked>
-            Requiere garantía
-          </label>
-          <button type="submit">Crear cliente</button>
-        </form>
-      </section>
-
-      <section class="panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Consulta</p>
-            <h2>Lista de clientes</h2>
-          </div>
-          <div class="filters">
-            <input id="clienteBuscar" type="search" placeholder="Buscar nombre o RUC">
-            <label class="check-field">
-              <input id="clienteIncluirInactivos" type="checkbox">
-              Inactivos
-            </label>
-          </div>
-        </div>
-
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Razón social</th>
-                <th>RUC</th>
-                <th>Teléfono</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody id="clientesBody">
-            </tbody>
-          </table>
-        </div>
+    <section id="clientesView" class="view" data-module="clientes"></section>
+    <section id="productosView" class="view" data-module="productos"></section>
+    <section id="cilindrosView" class="view" data-module="cilindros"></section>
+    <section id="pedidosView" class="view" data-module="pedidos"></section>
+    <section id="movimientosView" class="view" data-module="movimientos"></section>
+    <section id="recargasView" class="view" data-module="recargas"></section>
+    <section id="maestrosView" class="view">
+      <section class="split-grid">
+        <div data-module="zonas"></div>
+        <div data-module="conductores"></div>
+        <div data-module="vehiculos"></div>
+        <div data-module="proveedores"></div>
       </section>
     </section>
   </main>

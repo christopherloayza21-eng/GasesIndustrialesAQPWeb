@@ -65,7 +65,8 @@ button {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   min-height: 42px;
   padding: 10px 12px;
@@ -74,6 +75,11 @@ select {
   background: #111411;
   color: var(--color-text);
   font: inherit;
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
 }
 
 .page {
@@ -85,9 +91,12 @@ select {
   display: flex;
   gap: 10px;
   margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
 .tab-button {
+  flex: 0 0 auto;
   background: var(--color-panel);
   border: 1px solid var(--color-border);
 }
@@ -166,6 +175,24 @@ select {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 24px;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.json-action {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .form-grid label,
@@ -262,6 +289,10 @@ td {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .split-grid {
     grid-template-columns: 1fr;
   }
 
