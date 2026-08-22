@@ -18,11 +18,26 @@ namespace GasesIndustriales.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClientes()
+        public async Task<IActionResult> GetClientes([FromQuery] string? buscar, [FromQuery] bool incluirInactivos = false)
         {
-            var clientes = await _context.Clientes
-                .AsNoTracking()
-                .Where(cliente => cliente.Activo)
+            var query = _context.Clientes.AsNoTracking();
+
+            if (!incluirInactivos)
+            {
+                query = query.Where(cliente => cliente.Activo);
+            }
+
+            if (!string.IsNullOrWhiteSpace(buscar))
+            {
+                var termino = buscar.Trim().ToLower();
+
+                query = query.Where(cliente =>
+                    cliente.RazonSocial.ToLower().Contains(termino)
+                    || (cliente.Ruc != null && cliente.Ruc.Contains(termino)));
+            }
+
+            var clientes = await query
+                .OrderBy(cliente => cliente.RazonSocial)
                 .Select(cliente => ToResponseDto(cliente))
                 .ToListAsync();
 
@@ -127,6 +142,28 @@ namespace GasesIndustriales.Api.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPatch("{id:int}/reactivar")]
+        public async Task<IActionResult> ReactivarCliente(int id)
+        {
+            var cliente = await _context.Clientes.FindAsync(id);
+
+            if (cliente is null)
+            {
+                return NotFound();
+            }
+
+            if (cliente.Activo)
+            {
+                return Ok(ToResponseDto(cliente));
+            }
+
+            cliente.Activo = true;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(ToResponseDto(cliente));
         }
 
         private async Task<bool> ExisteRucActivo(string? ruc, int? idClienteIgnorado = null)

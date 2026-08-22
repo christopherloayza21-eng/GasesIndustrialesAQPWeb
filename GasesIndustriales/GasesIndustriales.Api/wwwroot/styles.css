@@ -64,9 +64,45 @@ button {
   cursor: pointer;
 }
 
+input,
+select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #111411;
+  color: var(--color-text);
+  font: inherit;
+}
+
 .page {
   width: min(1120px, calc(100% - 36px));
   margin: 36px auto;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.tab-button {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+}
+
+.tab-button.active {
+  background: var(--color-green);
+  color: #071007;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
 }
 
 .summary-grid {
@@ -114,10 +150,73 @@ button {
   border-bottom: 1px solid var(--color-border);
 }
 
+#clientesStatus,
 #statusText {
   margin: 0;
   color: var(--color-muted);
   font-size: 14px;
+}
+
+.form-panel {
+  margin-bottom: 28px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 24px;
+}
+
+.form-grid label,
+.filters {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.full-field {
+  grid-column: span 2;
+}
+
+.check-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.check-field input {
+  width: auto;
+  min-height: auto;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(72, 196, 93, 0.14);
+  color: var(--color-green);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-pill.inactive {
+  background: rgba(255, 107, 0, 0.16);
+  color: var(--color-orange);
+}
+
+.table-action {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 12px;
 }
 
 .table-wrapper {
@@ -160,6 +259,20 @@ td {
 
   .summary-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-field {
+    grid-column: auto;
+  }
+
+  .filters {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
   }
 }
 
