@@ -95,3 +95,8 @@ Accept: application/json
 
 GET {{GasesIndustriales.Api_HostAddress}}/api/cilindros/1
 Accept: application/json
+
+###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/dashboard/resumen
+Accept: application/json

@@ -22,6 +22,10 @@ namespace GasesIndustriales.Api.Data
 
         public DbSet<Vehiculo> Vehiculos { get; set; }
 
+        public DbSet<Pedido> Pedidos { get; set; }
+
+        public DbSet<MovimientoCilindro> MovimientosCilindro { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cliente>(entity =>
@@ -178,6 +182,74 @@ namespace GasesIndustriales.Api.Data
 
                 entity.Property(e => e.Activo)
                     .HasColumnName("activo");
+            });
+
+            modelBuilder.Entity<Pedido>(entity =>
+            {
+                entity.ToTable("pedido");
+
+                entity.HasKey(e => e.IdPedido);
+
+                entity.Property(e => e.IdPedido)
+                    .HasColumnName("id_pedido");
+
+                entity.Property(e => e.IdCliente)
+                    .HasColumnName("id_cliente");
+
+                entity.Property(e => e.FechaPedido)
+                    .HasColumnName("fecha_pedido");
+
+                entity.Property(e => e.DireccionEntrega)
+                    .HasColumnName("direccion_entrega");
+
+                entity.Property(e => e.IdZona)
+                    .HasColumnName("id_zona");
+
+                entity.Property(e => e.IdConductor)
+                    .HasColumnName("id_conductor");
+
+                entity.Property(e => e.IdVehiculo)
+                    .HasColumnName("id_vehiculo");
+
+                entity.Property(e => e.EstadoPedido)
+                    .HasColumnName("estado_pedido");
+
+                entity.Property(e => e.Observaciones)
+                    .HasColumnName("observaciones");
+            });
+
+            modelBuilder.Entity<MovimientoCilindro>(entity =>
+            {
+                entity.ToTable("movimiento_cilindro");
+
+                entity.HasKey(e => e.IdMovimiento);
+
+                entity.Property(e => e.IdMovimiento)
+                    .HasColumnName("id_movimiento");
+
+                entity.Property(e => e.IdCilindro)
+                    .HasColumnName("id_cilindro");
+
+                entity.Property(e => e.IdPedido)
+                    .HasColumnName("id_pedido");
+
+                entity.Property(e => e.TipoMovimiento)
+                    .HasColumnName("tipo_movimiento");
+
+                entity.Property(e => e.FechaMovimiento)
+                    .HasColumnName("fecha_movimiento");
+
+                entity.Property(e => e.IdCliente)
+                    .HasColumnName("id_cliente");
+
+                entity.Property(e => e.IdConductor)
+                    .HasColumnName("id_conductor");
+
+                entity.Property(e => e.IdVehiculo)
+                    .HasColumnName("id_vehiculo");
+
+                entity.Property(e => e.Observacion)
+                    .HasColumnName("observacion");
             });
         }
     }
