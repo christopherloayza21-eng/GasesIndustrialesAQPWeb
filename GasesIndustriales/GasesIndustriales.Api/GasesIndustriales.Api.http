@@ -85,3 +85,13 @@ Content-Type: application/json
 
 DELETE {{GasesIndustriales.Api_HostAddress}}/api/productos/1
 Accept: application/json
+
+###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/cilindros
+Accept: application/json
+
+###
+
+GET {{GasesIndustriales.Api_HostAddress}}/api/cilindros/1
+Accept: application/json
