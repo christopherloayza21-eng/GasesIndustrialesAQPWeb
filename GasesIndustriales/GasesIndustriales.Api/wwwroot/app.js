@@ -61,7 +61,8 @@ const modules = {
     title: "Pedidos",
     endpoint: "/api/pedidos",
     key: "idPedido",
-    complex: true,
+    readonly: true,
+    actions: [["Crear pedido", "/api/pedidos"]],
     sample: {
       idCliente: 1,
       direccionEntrega: "Dirección de entrega",
